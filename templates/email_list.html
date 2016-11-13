@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="http://v4.pingendo.com/assets/bootstrap/themes/default.css" rel="stylesheet" type="text/css">
-      <link href="me.css" rel="stylesheet" type="text/css">
+      <!--<link href="me.css" rel="stylesheet" type="text/css">-->
 <style>
 .col-lg-6{
 border:5px solid;
@@ -29,7 +29,7 @@ height:60%;
 
       /* Box styles */
 .myBox {
-    text-align:center; 
+    text-align:center;
 font: 15px/20px sans-serif;
 width: 100%;
     height: 80%;
@@ -52,15 +52,15 @@ border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-background: #D3D3D3;  
+background: #D3D3D3;
 border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-background: #88ba1c;  
+background: #88ba1c;
 }
 h3{
-    text-align:center; 
+    text-align:center;
 }
 li{
     background: rgba(190, 241, 161, 0.3);
@@ -99,6 +99,7 @@ margin-left: 30%;
   font-size: 17px;
   color: white;
   padding: 15px;
+  bottom:4%;
   list-style-type: none;
     border-radius: 4em 4em;
 
@@ -152,9 +153,9 @@ border-top-right-radius: 1em 3em;
 
 </style>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script>
+var count=0;
  $(document).ready(function(){
   $('#hideMenu').hover(function(){
       $('#menu').fadeIn();
@@ -163,20 +164,35 @@ border-top-right-radius: 1em 3em;
   $(document).mousemove(function(event){
      if(event.pageY>300)$('#menu').fadeOut();
     });
+
  });
- 
+//  alert("second");
+
+ function change(divId,emailID){
+    //  alert('<object data="http://yhack-shervyna.c9users.io:8080/emails/'+emailID+'">');
+   //  $("#divId").html('<object data="http://yhack-shervyna.c9users.io:8080/emails/'+emailID+'" width="100px" height="100px">');
+     //     console.log("ok");alert(divId.html+' ' + emailID);
+
+   //  $('#divId'+'Obj').show();
+
+        $('#close'+'blue').hide();
+         $('#add'+'blue').show();
+
+   }
+
+
 </script>
 <body>
   <div class="section ">
 <div class="container-fluid" id="menu" style="display: none" >
-    <img src="https://lh5.ggpht.com/I-cdjTVAl2SdKEe3Bfk-0msh0iHcYj9_5C0Fx8CVy2LQoPP20HvLAvXgQBWElgg9wQ=w300" 
+    <img src="https://lh5.ggpht.com/I-cdjTVAl2SdKEe3Bfk-0msh0iHcYj9_5C0Fx8CVy2LQoPP20HvLAvXgQBWElgg9wQ=w300"
           width="50px" height="50px" style="margin-left:96%;border:1px solid white; border-radius:2em 2em">
       <p id="inMenu">Choose 4 things that you want to see on this page!</p>
       <ul class="list">
-        <li ><a href="">School</a></li> 
-        <li ><a href="">Business</a></li> 
-        <li ><a href="">Promotion</a></li> 
-        <li ><a href="">Friends</a></li> 
+        <li ><a href="">School</a></li>
+        <li ><a href="">Business</a></li>
+        <li ><a href="">Promotion</a></li>
+        <li ><a href="">Friends</a></li>
 
       </ul>
   </div>
@@ -188,20 +204,21 @@ border-top-right-radius: 1em 3em;
         </div>
       </div>
     </div>
-  </div>
+    
   <div class="section glass">
     <div class="container">
       <div class="row" draggable="true">
           <div class="col-lg-6" id="blue" >
           <h3>School</h3>
-          <ul class="myBox" draggable="true" id="orange">
-            
+           <span style="display:none" id="addblue" ><img src="static/content.png" width="100%" height="90%"></span>
+          <ul class="myBox" draggable="true" id="closeblue">
+
              {% for item in emails %}
 
                 {% if 'honey' not in item.labels %}
                     <li>
                     <div>
-                        <strong>{{ item.subject }} </strong>
+                        <strong><a href="" onClick="change('blue',{{item.id}})">{{ item.subject }} </a></strong>
                         <p>See <a href="{{ url_for('show_email', email_id=item.id) }}">this email from {{ item.from }} !</a> !</p>
                     </div>
                     </li>
@@ -267,7 +284,7 @@ border-top-right-radius: 1em 3em;
         </div>
       </div>
     </div>
-  
+
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 
